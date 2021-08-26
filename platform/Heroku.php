@@ -315,7 +315,7 @@ function updateHerokuapp($HerokuappId, $apikey, $source)
     $data = json_encode($tmp);
     $response = HerokuAPI('POST', 'https://api.heroku.com/apps/' . $HerokuappId . '/builds', $data, $apikey);
     $result = json_decode( $response['body'], true );
-    $result['status'] = $result['id'];
+    $result['DplStatus'] = $result['id'];
     $response['body'] = json_encode($result);
     return $response;
 }
@@ -347,6 +347,7 @@ function setConfigResponse($response)
 
 function WaitFunction($buildId) {
     // GET /apps/{app_id_or_name}/builds/{build_id}
+    if ($buildId=='') return true;
     $response = HerokuAPI('GET', 'https://api.heroku.com/apps/' . getConfig('HerokuappId') . '/builds/' . $buildId, '', getConfig('APIKey'));
     if ($response['stat']==200) {
         $result = json_decode($response['body'], true);
