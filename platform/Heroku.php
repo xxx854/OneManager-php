@@ -345,7 +345,7 @@ function setConfigResponse($response)
     return json_decode( $response['body'], true );
 }
 
-function WaitFunction($buildId) {
+function WaitFunction($buildId = '') {
     // GET /apps/{app_id_or_name}/builds/{build_id}
     if ($buildId=='') return true;
     $response = HerokuAPI('GET', 'https://api.heroku.com/apps/' . getConfig('HerokuappId') . '/builds/' . $buildId, '', getConfig('APIKey'));
