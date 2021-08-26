@@ -837,7 +837,7 @@ function message($message, $title = 'Message', $statusCode = 200, $wainstat = 0)
                 x += ".";
                 min++;
                 var xhr = new XMLHttpRequest();
-                var url = "?WaitFunction" + (status!=""?"=" + status:"");
+                var url = "?WaitFunction=" + (status!=""?status:"1");
                 xhr.open("GET", url);
                 //xhr.setRequestHeader("Authorization", "Bearer ");
                 xhr.onload = function(e) {
