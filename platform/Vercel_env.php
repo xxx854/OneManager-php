@@ -431,6 +431,11 @@ function OnekeyUpate($auth = 'qkqpttgf', $project = 'OneManager-php', $branch = 
 }
 
 function WaitFunction($deployid) {
+    if ($buildId=='1') {
+        $tmp['stat'] = 400;
+        $tmp['body'] = 'id must provided.';
+        return $tmp;
+    }
     $header["Authorization"] = "Bearer " . getConfig('APIKey');
     $header["Content-Type"] = "application/json";
     $url = "https://api.vercel.com/v11/now/deployments/" . $deployid;
